@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+import freeCodeCampLogo from './imagenes/FreeCodeCamp_logo.png';
+import { useState } from 'react';
+//hacer cd a: contador-clicls en la terminal
+//luego hacer: npm start
 
 function App() {
+  const[numeroClics,setNumeroClics]= useState(0);
+
+  const manejarclick=()=>{
+    setNumeroClics (numeroClics+5);
+  }
+  const reiniciarContador=()=>{
+    setNumeroClics(0);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='freedodecamp-logo-contenedor'>
+        <img
+        className='freecodecamp-logo'
+        src={freeCodeCampLogo}
+        alt='Lodo de freeCodeCamp'/>
+      </div>
+      <div className='Principal'>
+        <Contador numeroClics={numeroClics}/>
+        <Boton
+         texto='click'
+         BotondeClick={true}
+         manejarclick={manejarclick}/>
+        <Boton
+         texto='Reiniciar'
+         BotondeClick={false}
+         manejarclick={reiniciarContador}/>
+      </div>
     </div>
   );
 }
